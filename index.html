@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cámara de Compensación Bancaria</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body onload="abrirBD()">
+
+ 
+ <div class="container-fluid text-white py-3 mb-4" style="background-color: #00465A;">
+
+    <div class="d-flex align-items-center justify-content-between px-3">
+      <img src="img/bcb.jpg" alt="Logo" height="200">
+      <h1 class="mb-0 flex-grow-1 text-center">CÁMARA DE COMPENSACIÓN ELECTRÓNICA</h1>
+      <div style="width: 60px;"></div>
+    </div>
+  </div>
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container-fluid">
+      <div class="d-flex">
+        <button class="btn btn-outline-light me-2" onclick="mostrarSeccion('bancos')">Bancos</button>
+        <button class="btn btn-outline-light me-2" onclick="mostrarSeccion('usuarios')">Usuarios</button>
+        <button class="btn btn-outline-light" onclick="mostrarSeccion('transferencias')">Transferencias</button>
+      </div>
+    </div>
+  </nav>
+<div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-4 mb-4">
+      
+        <div class="col">
+          <div class="card h-100 text-center">
+            <img src="img/union.jpg" class="card-img-top p-2" style="height: 100px; object-fit: contain;" alt="Banco 1">
+            <div class="card-body">
+              <h6 class="card-title">Banco Unión</h6>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col">
+          <div class="card h-100 text-center">
+            <img src="img/bnb.png" class="card-img-top p-2" style="height: 100px; object-fit: contain;" alt="Banco 2">
+            <div class="card-body">
+              <h6 class="card-title">Banco Nacional de Bolivia</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 text-center">
+            <img src="img/ganadero.jpg" class="card-img-top p-2" style="height: 100px; object-fit: contain;" alt="Banco 3">
+            <div class="card-body">
+              <h6 class="card-title">Banco Ganadero</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 text-center">
+            <img src="img/santaCruz.jpg" class="card-img-top p-2" style="height: 100px; object-fit: contain;" alt="Banco 4">
+            <div class="card-body">
+              <h6 class="card-title">Mercantil Santa Cruz</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 text-center">
+            <img src="img/economico.jpg" class="card-img-top p-2" style="height: 100px; object-fit: contain;" alt="Banco 5">
+            <div class="card-body">
+              <h6 class="card-title">Banco Económico</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 text-center">
+            <img src="img/bisa.jpg" class="card-img-top p-2" style="height: 100px; object-fit: contain;" alt="Banco 6">
+            <div class="card-body">
+              <h6 class="card-title">Banco Bisa</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 text-center">
+            <img src="img/fie.jpg" class="card-img-top p-2" style="height: 100px; object-fit: contain;" alt="Banco 7">
+            <div class="card-body">
+              <h6 class="card-title">Banco Fie</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 text-center">
+            <img src="img/bcp.jpg" class="card-img-top p-2" style="height: 100px; object-fit: contain;" alt="Banco 8">
+            <div class="card-body">
+              <h6 class="card-title">Banco de Crédigo de Bolivia</h6>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 text-center">
+            <img src="img/sol.jpg" class="card-img-top p-2" style="height: 100px; object-fit: contain;" alt="Banco 9">
+            <div class="card-body">
+              <h6 class="card-title">Banco Sol</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+  <div class="container">
+
+   
+    <div id="seccion-bancos" class="seccion">
+      <div class="card p-3 mb-3 shadow-sm">
+        <h5>Registrar Banco</h5>
+        <input type="text" id="nombreBanco" class="form-control mb-2" placeholder="Nombre del banco">
+        <button onclick="guardarBanco()" class="btn btn-success">Guardar</button>
+      </div>
+      <table class="table table-hover table-bordered shadow-sm">
+        <thead class="table-primary"><tr><th>ID</th><th>Nombre</th><th>Acciones</th></tr></thead>
+        <tbody id="tabla-bancos"></tbody>
+      </table>
+    </div>
+
+    
+    <div id="seccion-usuarios" class="seccion d-none">
+      <div class="card p-3 mb-3 shadow-sm">
+        <h5>Registrar Usuario</h5>
+        <input type="text" id="nombreUsuario" class="form-control mb-2" placeholder="Nombre del usuario">
+        <select id="bancoUsuario" class="form-select mb-2"></select>
+        <button onclick="guardarUsuario()" class="btn btn-success">Guardar</button>
+      </div>
+      <table class="table table-hover table-bordered shadow-sm">
+        <thead class="table-primary"><tr><th>ID</th><th>Nombre</th><th>Banco</th><th>Acciones</th></tr></thead>
+        <tbody id="tabla-usuarios"></tbody>
+      </table>
+    </div>
+
+   
+    <div id="seccion-transferencias" class="seccion d-none">
+      <div class="card p-3 mb-3 shadow-sm">
+        <h5>Realizar Transferencia</h5>
+        <div class="row">
+          <div class="col">
+            <select id="usuarioOrigen" class="form-select mb-2"></select>
+          </div>
+          <div class="col">
+            <select id="usuarioDestino" class="form-select mb-2"></select>
+          </div>
+          <div class="col">
+            <input type="number" id="montoTransferencia" class="form-control mb-2" placeholder="Monto">
+          </div>
+          <div class="col">
+            <button onclick="realizarTransferencia()" class="btn btn-success w-100">Transferir</button>
+          </div>
+        </div>
+      </div>
+      <table class="table table-hover table-bordered shadow-sm">
+        <thead class="table-primary"><tr><th>ID</th><th>Origen</th><th>Destino</th><th>Monto</th></tr></thead>
+        <tbody id="tabla-transferencias"></tbody>
+      </table>
+    </div>
+  </div>
+
+  
+  <footer class="text-center bg-dark text-light p-4 mt-5">
+    <p class="mb-1">© 2025 Alexander Flores López - Todos los derechos reservados</p>
+    <small>Tecnologías de Red</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
